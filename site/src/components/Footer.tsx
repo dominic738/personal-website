@@ -49,7 +49,6 @@ const WebsiteComponents = () => {
     // Count the visit
     fetch(`${API_BASE}/visit`, {
       method: "POST",
-      credentials: "include",
     }).catch((err) => console.error("Failed to count visit:", err));
 
     // Fetch real stats from API
