@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 
 const WebsiteComponents = () => {
+  const API_BASE = import.meta.env.VITE_API_BASE;
   const [phoneCopied, setPhoneCopied] = useState(false);
   const [stats, setStats] = useState<Stats>({
     conversations: 0,
@@ -46,13 +47,13 @@ const WebsiteComponents = () => {
 
   useEffect(() => {
     // Count the visit
-    fetch("http://localhost:8000/visit", {
+    fetch(`${API_BASE}/visit`, {
       method: "POST",
       credentials: "include",
     }).catch((err) => console.error("Failed to count visit:", err));
 
     // Fetch real stats from API
-    fetch("http://localhost:8000/stats")
+    fetch(`${API_BASE}/stats`)
       .then((res) => res.json())
       .then((data) => {
         if (data.conversations)
