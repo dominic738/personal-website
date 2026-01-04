@@ -16,7 +16,7 @@ function Work() {
   const [videoState, setVideoState] = useState<VideoState>("idle");
   const [hasEntered, setHasEntered] = useState(false);
 
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   // Separate video refs for each state
@@ -211,6 +211,17 @@ function Work() {
     }
   };
 
+  useEffect(() => {
+    if (scrollRef.current) {
+      // This tells the container specifically to scroll to its own bottom
+      // It is physically impossible for this to scroll the main page
+      scrollRef.current.scrollTo({
+        top: scrollRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [messages]);
+
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -270,7 +281,7 @@ function Work() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-stretch min-h-[80vh]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-stretch h-[80vh]">
         {/* Left side - Full Album Mosaic Video */}
         <div className="flex flex-col h-full">
           {/* Online Status Badge - Above Video */}
@@ -312,8 +323,8 @@ function Work() {
         </div>
 
         {/* Right side - Liquid Glass Chat */}
-        <div className="h-full flex flex-col">
-          <div className="mb-8">
+        <div className="h-full flex min-h-0 flex-col overflow-hidden">
+          <div className="mb-8 shrink-0">
             <h2 className="text-5xl font-bold mb-4 text-white tracking-tight">
               Let's Talk
             </h2>
@@ -329,6 +340,7 @@ function Work() {
               className="flex-1 overflow-y-auto p-6 space-y-4 scrollbar-none"
               style={{
                 scrollbarWidth: "none",
+                msOverflowStyle: "none",
               }}
             >
               <style>{`
@@ -361,6 +373,7 @@ function Work() {
 
                 return (
                   <div
+                    ref={scrollRef}
                     key={idx}
                     className={`flex ${
                       msg.role === "user" ? "justify-end" : "justify-start"
@@ -412,8 +425,6 @@ function Work() {
                   </div>
                 </div>
               )}
-
-              <div ref={messagesEndRef} />
             </div>
 
             {/* Quick Prompt Buttons - Fixed */}
