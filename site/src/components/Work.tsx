@@ -270,12 +270,9 @@ function Work() {
         </div>
       )}
 
-      <div
-        className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center"
-        style={{ height: "calc(100vh - 12rem)" }}
-      >
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-stretch min-h-[80vh]">
         {/* Left side - Full Album Mosaic Video */}
-        <div className="flex flex-col justify-center h-full">
+        <div className="flex flex-col h-full">
           {/* Online Status Badge - Above Video */}
           <div className="mb-4">
             <div className="inline-flex items-center gap-3 bg-black/60 backdrop-blur-md rounded-full px-5 py-3 border border-white/20 shadow-2xl">
@@ -291,10 +288,9 @@ function Work() {
 
           <div
             ref={containerRef}
-            className={`group relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)] ring-1 ring-white/10 ${
+            className={`group relative w-full h-full bg-black rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)] ring-1 ring-white/10 ${
               videoPush ? "scale-[0.98]" : "scale-100"
             }`}
-            style={{ height: "65vh" }}
           >
             {/* Media */}
             <div className="absolute inset-0 pointer-events-none">
@@ -327,22 +323,12 @@ function Work() {
           </div>
 
           {/* Liquid Glass Chat Container - Fixed Height */}
-          <div
-            className="rounded-2xl overflow-hidden shadow-2xl backdrop-blur-xl bg-white/5 border border-white/10"
-            style={{
-              height: "600px",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
+          <div className="flex flex-col flex-1 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-xl bg-white/5 border border-white/10">
             {/* Messages Area - Scrollable */}
             <div
-              className="p-6 space-y-4"
+              className="flex-1 overflow-y-auto p-6 space-y-4 scrollbar-none"
               style={{
-                flex: "1 1 auto",
-                overflowY: "auto",
                 scrollbarWidth: "none",
-                msOverflowStyle: "none",
               }}
             >
               <style>{`
