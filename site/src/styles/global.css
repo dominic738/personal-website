@@ -10,6 +10,16 @@ html {
 }
 
 
+.chat-scroll::-webkit-scrollbar {
+  width: 0px;
+}
+
+
+.chat-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
 html {
   scrollbar-width: none;
 }
