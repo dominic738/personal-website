@@ -74,7 +74,7 @@ const WebsiteComponents = () => {
         "Maps songs and playlists onto semantic axes using language embeddings to explore musical mood and meaning.",
       tech: ["Python", "SBERT", "Generative AI", "Linear Algebra"],
       gradient: "from-indigo-500 to-purple-500",
-      link: "https://themusicalcompass.com/",
+      link: "https://mymusicalcompass.com/",
     },
     {
       title: "Album Mosaic Creator",
