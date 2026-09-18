@@ -220,7 +220,7 @@ function Work() {
         behavior: "smooth",
       });
     }
-  }, [messages]);
+  }, [messages, displayedContent, loading]);
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -337,6 +337,7 @@ function Work() {
           <div className="flex flex-col flex-1 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-xl bg-white/5 border border-white/10">
             {/* Messages Area - Scrollable */}
             <div
+              ref={scrollRef}
               className="flex-1 overflow-y-auto p-6 space-y-4 scrollbar-none"
               style={{
                 scrollbarWidth: "none",
@@ -373,7 +374,6 @@ function Work() {
 
                 return (
                   <div
-                    ref={scrollRef}
                     key={idx}
                     className={`flex ${
                       msg.role === "user" ? "justify-end" : "justify-start"
